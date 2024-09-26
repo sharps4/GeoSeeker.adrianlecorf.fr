@@ -1,0 +1,32 @@
+[
+  {
+    "lat": -1.26,
+    "lng": 36.72,
+    "isAvailable": true
+  },
+  {
+    "lat": -1.26,
+    "lng": -48.24,
+    "isAvailable": true
+  },
+  {
+    "lat": -1.44,
+    "lng": 37.800000000000004,
+    "isAvailable": true
+  },
+  {
+    "lat": 1.44,
+    "lng": 103.67999999999999,
+    "isAvailable": true
+  },
+  {
+    "lat": -1.44,
+    "lng": 122.39999999999999,
+    "isAvailable": true
+  },
+  {
+    "lat": 1.44,
+    "lng": 124.92000000000002,
+    "isAvailable": true
+  }
+]

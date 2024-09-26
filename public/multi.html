@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Multijoueur</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script> <!-- Connexion à Socket.IO -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!--Fonts-->
+    <link rel="stylesheet" href="https://use.typekit.net/mfh2zpo.css">
+</head>
+<body>
+    <div id="lobby">
+        <button id="createRoom">Créer un salon</button>
+        <input type="text" id="roomIdInput" placeholder="ID du salon">
+        <button id="joinRoom">Rejoindre un salon</button>
+        <div id="roomStatus" style="display:none;">
+            <p>En attente de joueurs...</p>
+        </div>
+        <div id="readyStatus" style="display:none;">
+            <p>Les deux joueurs sont prêts ! La partie commence dans 5 secondes...</p>
+        </div>
+    </div>
+
+    <div id="gameArea" style="display:none; height:75%; width:100%">
+        <!--Game infos-->  
+        <div class="infos2 round">Manche <span id="round">1</span></div>
+        <div class="infos">
+            <div class="score2">Score total : </span><span id="scoreTotal"></span></div>
+            <div class="timer" id="timer"></div>
+        </div> 
+
+        <!-- Loader pour le chargement -->
+        <div id="loader">
+            <span class="span"><i class="fa-solid fa-location-dot"></i></span>
+            <span class="span" style="--delay: 0.1s"><i class="fa-solid fa-location-dot"></i></span>
+            <span class="span" style="--delay: 0.2s"><i class="fa-solid fa-location-dot"></i></span>
+            <span class="span" style="--delay: 0.3s"><i class="fa-solid fa-location-dot"></i></span>
+            <span class="span" style="--delay: 0.4s"><i class="fa-solid fa-location-dot"></i></span>
+        </div> 
+
+        <!-- Maps et Panorama -->
+        <div id="map"></div>
+        <div id="pano"></div>
+
+        <div class="validate">
+            <a class="valid-btn" id="submitGuess">Valider mon guess</a>
+        </div>
+
+        <!--Popup-->
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <div class="popup-header">
+                <h2>Manche terminé !</h2>
+                </div>
+                <div class="popup-body">
+                    <p>Tu as placé ton guess à <span id="dist"></span> de la bonne postion et tu as fait un score de <span id="score2"></span> sur cette manche.</p>
+                </div>
+                <div class="popup-footer">
+                    <a class="valid-btn" id="next">Passer à la manche suivante</a>
+                    <a class="valid-btn" href="index.php" style="text-decoration:none">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="endpopup" class="endpopup">
+            <div class="popup-content">
+                <div class="popup-header">
+                <h2>Le jeu est terminé !</h2>
+                </div>
+                <div class="popup-body">
+                    <p>Tu as placé ton dernier guess à <span id="dist2"></span> de la bonne postion et tu as fait un score de <span id="score3"></span> sur cette manche.</p>
+                    <p>Ton score final est de <span id="endscore"></span></p>
+                </div>
+                <div class="popup-footer">
+                    <a class="valid-btn" id="next3">Rejouer</a>
+                    <a class="valid-btn" href="index.php" style="text-decoration:none">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+
+        <a class="valid-btn2" id="validate2">Valider</a>
+    </div>
+
+    <div id="endMessage" style="display: none;">
+        <h2>Le jeu est terminé !</h2>
+        <p>Votre score final est : <span id="finalScore"></span></p>
+        <button onclick="window.location.reload();">Rejouer</button>
+    </div>
+    
+    
+
+    <script type="module" src="assets/js/utils.js"></script>
+    <script type="module" src="assets/js/map.js"></script>
+    <script type="module" src="assets/js/multi.js"></script> <!-- Fichier JS pour le multijoueur -->
+    <script type="module" src="assets/js/events.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkPHpL31z0zgil2A8VQ--uHMf-DAEUCds&callback=initialize&v=weekly" defer></script>
+</body>
+</html>

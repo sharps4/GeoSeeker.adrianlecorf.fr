@@ -1,0 +1,52 @@
+[
+  {
+    "lat": 0.54,
+    "lng": 111.96,
+    "isAvailable": true
+  },
+  {
+    "lat": 0.54,
+    "lng": 123.12,
+    "isAvailable": true
+  },
+  {
+    "lat": 0.54,
+    "lng": -79.55999999999999,
+    "isAvailable": true
+  },
+  {
+    "lat": 0.72,
+    "lng": 34.56,
+    "isAvailable": true
+  },
+  {
+    "lat": -0.72,
+    "lng": 102.24000000000001,
+    "isAvailable": true
+  },
+  {
+    "lat": -0.72,
+    "lng": 119.88000000000001,
+    "isAvailable": true
+  },
+  {
+    "lat": 0.9,
+    "lng": 34.92000000000001,
+    "isAvailable": true
+  },
+  {
+    "lat": -0.9,
+    "lng": 119.88000000000001,
+    "isAvailable": true
+  },
+  {
+    "lat": -0.9,
+    "lng": -48.59999999999998,
+    "isAvailable": true
+  },
+  {
+    "lat": -1.08,
+    "lng": 37.44,
+    "isAvailable": true
+  }
+]

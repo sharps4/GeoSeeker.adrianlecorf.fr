@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collect Street View Coordinates - Europe</title>
+
+    <!-- API Google Maps (ajoute ta clé API) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkPHpL31z0zgil2A8VQ--uHMf-DAEUCds&libraries=places"></script>
+
+    <!-- Inclure le fichier JS contenant le script d'exploration pour l'Europe -->
+    <script src="assets/js/world_coords.js" defer></script>
+</head>
+<body>
+    <h1>Collecte des coordonnées Street View valides (Europe)</h1>
+    <p>Les coordonnées valides sont collectées et affichées dans la console.</p>
+
+    <button onclick="startCollectionEurope()">Démarrer la collecte</button>
+
+    <!-- L'endroit où les coordonnées seront affichées -->
+    <pre id="output"></pre>
+</body>
+</html>
