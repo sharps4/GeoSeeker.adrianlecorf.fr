@@ -9,9 +9,8 @@ GeoSeeker is a project aimed at reproduced the famous game GeoGuessr.
 
 ## See the project live
 
-https://[adrianlecorf.geoseeker.fr](https://geoseeker.adrianlecorf.fr/)
+[https://adrianlecorf.geoseeker.fr](https://geoseeker.adrianlecorf.fr/)
 
 ## License
 
 This project is licensed under the GPL-3.0 License.
-
