@@ -2,7 +2,7 @@
 
 # GeoSeeker
 
-GeoSeeker is a project aimed at reproduced the famous game GeoGuessr.
+GeoSeeker is a project aimed at reproducing the famous game GeoGuessr. The project is still a work in progress, so UI/UX design is not done and some functionalities as multiplayer don't work perfectly.
 
 > [!IMPORTANT]
 > This project is not made for an external usage.
