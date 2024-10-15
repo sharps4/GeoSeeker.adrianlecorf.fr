@@ -113,6 +113,5 @@
     <script type="module" src="assets/js/events.js"></script>
     <script type="module" src="assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkPHpL31z0zgil2A8VQ--uHMf-DAEUCds&callback=initialize&v=weekly" defer></script>
 </body>
 </html> 

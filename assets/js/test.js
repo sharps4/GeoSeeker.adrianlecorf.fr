@@ -3,7 +3,6 @@ const axios = require('axios');
 
 // Function to check if a point is available in Street View
 function checkStreetViewAvailability(lat, lng) {
-  const url = `https://maps.googleapis.com/maps/api/streetview/metadata?location=${lat},${lng}&radius=50&key=AIzaSyDkPHpL31z0zgil2A8VQ--uHMf-DAEUCds`;
 
   console.log(`Checking Street View for (${lat}, ${lng})`);
   return axios.get(url)
