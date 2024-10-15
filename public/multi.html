@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Multijoueur</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script> <!-- Connexion à Socket.IO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!--Fonts-->
@@ -55,7 +55,7 @@
                 <h2>Manche terminé !</h2>
                 </div>
                 <div class="popup-body">
-                    <p>Tu as placé ton guess à <span id="dist"></span> de la bonne postion et tu as fait un score de <span id="score2"></span> sur cette manche.</p>
+                    <p>Tu as placé ton guess à <span id="dist2"></span> de la bonne postion et tu as fait un score de <span id="score2"></span> sur cette manche.</p>
                 </div>
                 <div class="popup-footer">
                     <a class="valid-btn" id="next">Passer à la manche suivante</a>
@@ -74,7 +74,7 @@
                     <p>Ton score final est de <span id="endscore"></span></p>
                 </div>
                 <div class="popup-footer">
-                    <a class="valid-btn" id="next3">Rejouer</a>
+                    <a class="valid-btn" id="next3">Test</a>
                     <a class="valid-btn" href="index.php" style="text-decoration:none">Retour à l'accueil</a>
                 </div>
             </div>

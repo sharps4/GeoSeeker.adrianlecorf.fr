@@ -37,7 +37,7 @@ async function checkAllPoints(points, i) {
   }
   // const availables = points.map(point => checkStreetViewAvailability(point.lat, point.lng)).filter(point => point.isAvailable);
 
-  fs.writeFileSync(`assets/data/availables_part${i}.json`, JSON.stringify(availables, null, 2), 'utf8');
+  fs.writeFileSync(`data/availables_part${i}.json`, JSON.stringify(availables, null, 2), 'utf8');
 }
 
 // Read the JSON file

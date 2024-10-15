@@ -13,7 +13,7 @@ let validCoordinates = [];
 
 async function loadValidCoordinates() {
   try {
-    const response = await fetch('assets/data/europe_valid_coordinates.json');
+    const response = await fetch('assets/data/merged_output.json');
     validCoordinates = await response.json();
     console.log('Coordonnées valides chargées :', validCoordinates.length);
   } catch (error) {

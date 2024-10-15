@@ -1,6 +1,8 @@
 import { setupMap, addMarker } from './map.js';
 
-const socket = io('http://localhost:3000');
+const socket = io('https://geoseeker.adrianlecorf.fr', {
+  transports: ['websocket', 'polling']
+});
 export let roomId = null;
 let isReady = false;
 
@@ -116,7 +118,7 @@ export function validateGuess() {
 
     document.getElementById("scoreTotal").innerHTML = `${scoreTotal.toFixed(3)} points`;
     document.getElementById("round").innerHTML = `${round + 1}`;
-    document.getElementById("dist").innerHTML = `${km_distance.toFixed(2)} km`;
+    document.getElementById("dist2").innerHTML = `${km_distance.toFixed(2)} km`;
     document.getElementById("score2").innerHTML = `${score.toFixed(3)} points`;
     document.getElementById("dist2").innerHTML = `${km_distance.toFixed(2)} km`;
     document.getElementById("score3").innerHTML = `${score.toFixed(3)} points`;
@@ -156,37 +158,32 @@ socket.on('startTimer', ({ seconds }) => {
 function startTimer(seconds) {
   let timeLeft = seconds;
   document.getElementById('timer').style.display = 'block';
-  if (countdown) { clearInterval(countdown); }  
+  if (countdown) { clearInterval(countdown); } 
   countdown = setInterval(() => {
       if (timeLeft <= 0) {
           clearInterval(countdown);
-          socket.emit('timeUp', { roomId }); 
+          // socket.emit('timeUp', { roomId });  // Notify server when time is up
           document.getElementById("popup").style.display = "block";  
       } else {
           document.getElementById('timer').textContent = `Temps restant : ${timeLeft} secondes`;
-          console.log('Temps restant :', timeLeft);
           timeLeft--;
       }
   }, 1000);
 }
 
 socket.on('showResults', (guesses) => {
-  if (!isPopupClosed) {
-      document.getElementById('popup').style.display = 'block';  
-      document.getElementById('dist').textContent = `Guesses: ${JSON.stringify(guesses)}`;  
-      document.getElementById('next').style.display = 'block'; 
-
-      isPopupClosed = true;  
-
-      clearInterval(countdown);
-      document.getElementById('timer').style.display = 'none';
-      document.getElementById('timer').textContent = '';
-  }
+  clearInterval(countdown);  
+  document.getElementById('timer').style.display = 'none';
+  document.getElementById('timer').textContent = '';
+  
+  document.getElementById('popup').style.display = 'block';
+  document.getElementById('dist2').textContent = `Guesses: ${JSON.stringify(guesses)}`;
+  document.getElementById('next').style.display = 'block';
+  
+  isPopupClosed = false;  
 });
 
-
-
-socket.on('startNextRound', ({ randomCoords }) => {
+socket.on('startNextRound', ({ randomCoords, round }) => {
   document.getElementById('popup').style.display = 'none';  
   isPopupClosed = false;  
 

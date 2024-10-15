@@ -8,14 +8,22 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 
+// Serve static files from the public directory
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// Serve Socket.IO client library
+app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
+
+
+
 app.use(cors({
-    origin: 'http://127.0.0.1:5500',  
+    origin: 'https://geoseeker.adrianlecorf.fr/',  
     methods: ['GET', 'POST']
 }));
 
 const io = new Server(server, {
     cors: {
-        origin: 'http://127.0.0.1:5500',
+        origin: 'https://geoseeker.adrianlecorf.fr/',
         methods: ['GET', 'POST']
     }
 });
@@ -24,7 +32,7 @@ const rooms = {};
 
 async function loadValidCoordinates() {
     try {
-        const data = await fs.readFile(path.join(__dirname, 'public', 'assets', 'data', 'europe_valid_coordinates.json'), 'utf8');
+        const data = await fs.readFile(path.join(__dirname, 'public', 'assets', 'data', 'merged_output.json'), 'utf8');
         const coordinates = JSON.parse(data);
         if (!Array.isArray(coordinates) || coordinates.length === 0) {
             console.error('Erreur : Liste des coordonnées vides ou invalide.');
@@ -116,42 +124,45 @@ io.on('connection', (socket) => {
             rooms[roomId].guesses[socket.id] = guess;
             const players = rooms[roomId].players;
     
-            if (Object.keys(rooms[roomId].guesses).length === 1) {
-                io.in(roomId).emit('startTimer', { seconds: 15 });
-    
-                setTimeout(() => {
-                    if (rooms[roomId] && Object.keys(rooms[roomId].guesses).length === 1) {
-                        const playerGuesses = rooms[roomId].guesses;
-                        io.in(roomId).emit('showResults', playerGuesses); 
-                        rooms[roomId].guesses = {};  
-                    }
-                }, 15000);
-            }
-
             if (Object.keys(rooms[roomId].guesses).length === 2) {
+                clearTimeout(rooms[roomId].timer);
                 const playerGuesses = rooms[roomId].guesses;
                 io.in(roomId).emit('showResults', playerGuesses);
                 rooms[roomId].guesses = {};  
+            } else if (Object.keys(rooms[roomId].guesses).length === 1) {
+                rooms[roomId].timer = setTimeout(() => {
+                    const playerGuesses = rooms[roomId].guesses;
+                    io.in(roomId).emit('showResults', playerGuesses);
+                    rooms[roomId].guesses = {};  
+                }, 15000);
+                
+                io.in(roomId).emit('startTimer', { seconds: 15 });
             }
         }
     });
     
     
-    socket.on('timeUp', ({ roomId }) => {
-        if (rooms[roomId]) {
-            const playerGuesses = rooms[roomId].guesses;
     
-            io.in(roomId).emit('showResults', playerGuesses);
+    // socket.on('timeUp', ({ roomId }) => {
+    //     if (rooms[roomId]) {
+    //         const playerGuesses = rooms[roomId].guesses;
     
-            rooms[roomId].guesses = {};  
+    //         // Show results to both players
+    //         io.in(roomId).emit('showResults', playerGuesses);
     
-            if (rooms[roomId].round < 5) {  
-                rooms[roomId].round += 1;
-                const randomCoords = getRandomValidCoordinate(rooms[roomId].validCoordinates);
-                io.in(roomId).emit('startNextRound', { randomCoords, round: rooms[roomId].round });
-            }
-        }
-    });
+    //         rooms[roomId].guesses = {};  // Reset guesses for the next round
+    
+    //         // Proceed to the next round
+    //         setTimeout(() => {
+    //             if (rooms[roomId].round < 5) {  // Ensure game ends after 5 rounds
+    //                 rooms[roomId].round += 1;
+    //                 const randomCoords = getRandomValidCoordinate(rooms[roomId].validCoordinates);
+    //                 io.in(roomId).emit('startNextRound', { randomCoords, round: rooms[roomId].round });
+    //             }
+    //         }, 5000);
+    //     }
+    // });
+    
     
 
     socket.on('startTimer', ({ seconds }) => {
@@ -174,5 +185,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(3000, () => {
-    console.log('Serveur Socket.IO en écoute sur http://localhost:3000');
+    console.log('Serveur Socket.IO en écoute sur https://geoseeker.adrianlecorf.fr/');
 });
