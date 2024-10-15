@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/github/license/sharps4/neural_network)](https://github.com/sharps4/neural_network/LICENSE)
+[![License](https://img.shields.io/github/license/sharps4/Geoseeker.adrianlecorf.fr)](https://github.com/sharps4/Geoseeker.adrianlecorf.fr/LICENSE)
 
 # GeoSeeker
 
