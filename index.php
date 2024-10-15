@@ -19,7 +19,7 @@
     session_start();
 
     if (isset($_SESSION['user_id'])) {
-        $pdo = new PDO('mysql:host=2g2yu.myd.infomaniak.com;dbname=2g2yu_geoseeker', '2g2yu_sharps', 'ZK&t2b@hJBuZSp?');
+        $pdo = new PDO('database');
         $stmt = $pdo->prepare('SELECT * FROM users WHERE id = :id');
         $stmt->execute(['id' => $_SESSION['user_id']]);
         $user = $stmt->fetch();
